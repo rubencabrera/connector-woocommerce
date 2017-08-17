@@ -21,7 +21,7 @@
 
 from openerp import models, api, fields, _
 from woocommerce import API
-from openerp.exceptions import Warning
+from openerp.exceptions import Warning as UserError
 from openerp.addons.connector.session import ConnectorSession
 from datetime import datetime
 from .product_category import category_import_batch
@@ -101,14 +101,14 @@ class wc_backend(models.Model):
                     consumer_secret=sec_key, version=version)
         r = wcapi.get("products")
         if r.status_code == 404:
-            raise Warning(_("Enter Valid url"))
+            raise UserError(_("Enter Valid url"))
         val = r.json()
         msg = ''
         if 'errors' in r.json():
             msg = val['errors'][0]['message'] + '\n' + val['errors'][0]['code']
-            raise Warning(_(msg))
+            raise UserError(_(msg))
         else:
-            raise Warning(_('Test Success'))
+            raise UserError(_('Test Success'))
         return True
 
     @api.multi
