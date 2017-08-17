@@ -37,7 +37,7 @@ from ..backend import woo
 _logger = logging.getLogger(__name__)
 
 
-class woo_sale_order_status(models.Model):
+class WooSaleOrderStatus(models.Model):
     _name = 'woo.sale.order.status'
     _description = 'WooCommerce Sale Order Status'
 
@@ -186,7 +186,7 @@ class SaleOrderAdapter(GenericAdapter):
         order_list=[]
         for order in get_list['orders']:
             order_list.append(order['id'])
-        return order_list 
+        return order_list
 
 
 @woo
