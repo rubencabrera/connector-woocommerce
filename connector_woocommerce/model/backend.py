@@ -30,7 +30,7 @@ from .customer import customer_import_batch
 from .sale import sale_order_import_batch
 
 
-class wc_backend(models.Model):
+class WcBackend(models.Model):
     _name = 'wc.backend'
     _inherit = 'connector.backend'
     _description = 'WooCommerce Backend Configuration'
